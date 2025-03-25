@@ -240,19 +240,24 @@ article {
 /* Light Theme Styles */
 [data-theme="light"] {
   --bg-gradient-onyx: linear-gradient(to bottom right, 
-      hsl(0, 0%, 95%) 3%, 
-      hsl(0, 0%, 90%) 97%);
+      hsl(0, 0%, 98%) 3%, 
+      hsl(0, 0%, 94%) 97%);
   --bg-gradient-jet: linear-gradient(to bottom right, 
-      hsla(0, 0%, 95%, 0.251) 0%, 
-      hsla(0, 0%, 90%, 0) 100%), hsl(0, 0%, 95%);
+      hsla(0, 0%, 98%, 0.251) 0%, 
+      hsla(0, 0%, 94%, 0) 100%), hsl(0, 0%, 98%);
   --smoky-black: var(--light-bg);
   --eerie-black-1: var(--light-bg-alt);
   --eerie-black-2: var(--light-bg);
   --jet: var(--light-border);
   --white-1: var(--light-color);
   --white-2: var(--light-color);
-  --light-gray: hsl(0, 0%, 30%);
-  --light-gray-70: hsla(0, 0%, 30%, 0.7);
+  --light-gray: hsl(0, 0%, 25%);
+  --light-gray-70: hsla(0, 0%, 25%, 0.8);
+  --orange-yellow-crayola: hsl(45, 100%, 35%);
+  --vegas-gold: hsl(45, 54%, 35%);
+  --text-gradient-yellow: linear-gradient(to right,
+      hsl(45, 100%, 35%),
+      hsl(35, 100%, 35%));
 }
 
 .info_more-btn { border: 1px solid var(--jet);
