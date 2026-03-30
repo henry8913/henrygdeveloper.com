@@ -283,11 +283,11 @@ article {
   --white-2: var(--light-color);
   --light-gray: hsl(0, 0%, 25%);
   --light-gray-70: hsla(0, 0%, 25%, 0.8);
-  --orange-yellow-crayola: hsl(45, 100%, 35%);
-  --vegas-gold: hsl(45, 54%, 35%);
+  --orange-yellow-crayola: hsl(45, 100%, 45%);
+  --vegas-gold: hsl(45, 54%, 45%);
   --text-gradient-yellow: linear-gradient(to right,
-      hsl(45, 100%, 35%),
-      hsl(35, 100%, 35%));
+      hsl(45, 100%, 45%),
+      hsl(35, 100%, 45%));
 }
 
 .info_more-btn { border: 1px solid var(--jet);
@@ -456,10 +456,20 @@ main {
 \*-----------------------------------*/
 
 .sidebar {
+  background: var(--eerie-black-2);
+  border: 1px solid var(--jet);
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: var(--shadow-1);
+  z-index: 1;
   margin-bottom: 15px;
   max-height: 112px;
   overflow: hidden;
   transition: var(--transition-2);
+}
+
+.sidebar.active {
+  max-height: 800px;
 }
 
 @media (max-width: 580px) {
@@ -469,7 +479,7 @@ main {
   }
 
   .sidebar.active {
-    max-height: 420px;
+    max-height: 500px;
   }
 
   .avatar-box img {
@@ -502,7 +512,7 @@ main {
 }
 
 .sidebar.active {
-  max-height: 605px;
+  max-height: 800px;
 }
 
 .sidebar-info {
