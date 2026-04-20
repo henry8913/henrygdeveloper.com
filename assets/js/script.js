@@ -1,48 +1,57 @@
 'use strict';
 
-// Particles.js Configuration
-particlesJS('particles-js', {
-  particles: {
-    number: { value: 80, density: { enable: true, value_area: 800 } },
-    color: { value: '#ffd700' },
-    shape: { type: 'circle' },
-    opacity: { value: 0.5, random: false },
-    size: { value: 3, random: true },
-    line_linked: {
-      enable: true,
-      distance: 150,
-      color: '#ffd700',
-      opacity: 0.4,
-      width: 1
+// Particles.js Configuration function
+function initParticles(themeColor) {
+  const isLight = themeColor === 'light';
+  const pColor = isLight ? '#e6c200' : '#ffd700'; // Sligthly darker yellow for light theme, or maybe keep yellow but change opacity
+  const pOpacity = isLight ? 0.3 : 0.5;
+  const lOpacity = isLight ? 0.2 : 0.4;
+
+  if (window.pJSDom && window.pJSDom.length > 0) {
+    window.pJSDom[0].pJS.fn.vendors.destroypJS();
+    window.pJSDom = [];
+  }
+
+  particlesJS('particles-js', {
+    particles: {
+      number: { value: 80, density: { enable: true, value_area: 800 } },
+      color: { value: pColor },
+      shape: { type: 'circle' },
+      opacity: { value: pOpacity, random: false },
+      size: { value: 3, random: true },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: pColor,
+        opacity: lOpacity,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 3,
+        direction: 'none',
+        random: false,
+        straight: false,
+        out_mode: 'out',
+        bounce: false
+      }
     },
-    move: {
-      enable: true,
-      speed: 3,
-      direction: 'none',
-      random: false,
-      straight: false,
-      out_mode: 'out',
-      bounce: false
-    }
-  },
-  interactivity: {
-    detect_on: 'canvas',
-    events: {
-      onhover: { enable: true, mode: 'repulse' },
-      onclick: { enable: true, mode: 'push' },
-      resize: true
-    }
-  },
-  retina_detect: true
-});
+    interactivity: {
+      detect_on: 'canvas',
+      events: {
+        onhover: { enable: true, mode: 'repulse' },
+        onclick: { enable: true, mode: 'push' },
+        resize: true
+      }
+    },
+    retina_detect: true
+  });
+}
 
 // Theme switching functionality
 const themeButtons = document.querySelectorAll('.theme-btn');
 const html = document.documentElement;
 const savedTheme = localStorage.getItem('theme') || 'dark';
-
-// Set initial theme
-setTheme(savedTheme);
 
 // Theme switching
 themeButtons.forEach(btn => {
@@ -50,24 +59,33 @@ themeButtons.forEach(btn => {
     const theme = btn.dataset.theme;
     setTheme(theme);
     localStorage.setItem('theme', theme);
-
-    // Update active button
-    themeButtons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
   });
 });
 
 function setTheme(theme) {
+  let appliedTheme = theme;
   if (theme === 'auto') {
     if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-      html.dataset.theme = 'light';
+      appliedTheme = 'light';
     } else {
-      html.dataset.theme = 'dark';
+      appliedTheme = 'dark';
     }
-  } else {
-    html.dataset.theme = theme;
   }
+  
+  html.dataset.theme = appliedTheme;
+  initParticles(appliedTheme);
+
+  // Update active button
+  themeButtons.forEach(b => {
+    b.classList.remove('active');
+    if (b.dataset.theme === theme) {
+      b.classList.add('active');
+    }
+  });
 }
+
+// Set initial theme
+setTheme(savedTheme);
 
 // Listen for system theme changes
 window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {

@@ -290,6 +290,11 @@ article {
       hsl(35, 100%, 45%));
 }
 
+[data-theme="light"] .navbar,
+[data-theme="light"] .mobile-sidebar {
+  background: hsla(0, 0%, 98%, 0.85);
+}
+
 .info_more-btn { border: 1px solid var(--jet);
   border-radius: 20px;
   padding: 15px;
@@ -900,6 +905,12 @@ main {
   border-radius: 14px;
   box-shadow: var(--shadow-2);
   z-index: 1;
+  transition: transform var(--transition-1), box-shadow var(--transition-1);
+}
+
+.service-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-3);
 }
 
 .service-item::before {
@@ -1483,11 +1494,12 @@ main {
   padding-bottom: 20px;
   border-radius: 16px;
   box-shadow: var(--shadow-4);
-  transition: var(--transition-1);
+  transition: transform var(--transition-1), box-shadow var(--transition-1);
 }
 
 .project-item>a:hover {
   transform: translateY(-5px);
+  box-shadow: var(--shadow-5);
 }
 
 .github-link {
@@ -1553,6 +1565,12 @@ main {
   box-shadow: var(--shadow-4);
   border-radius: 16px;
   z-index: 1;
+  transition: transform var(--transition-1), box-shadow var(--transition-1);
+}
+
+.blog-post-item>a:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-5);
 }
 
 .blog-post-item>a::before {
@@ -1652,6 +1670,30 @@ main {
   height: 100%;
   border: none;
   filter: grayscale(1) invert(1);
+}
+
+[data-theme="light"] .mapbox iframe {
+  filter: grayscale(1);
+}
+
+/*-----------------------------------*\
+  #ACCESSIBILITY
+\*-----------------------------------*/
+
+:focus-visible {
+  outline: 2px solid var(--orange-yellow-crayola);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .contact-form {
